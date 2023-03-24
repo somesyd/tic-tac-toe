@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-WELCOME_MSG = 'Let\'s play TIC-TAC-TOE! Here is a lot more text to add for a fun message that everyone will enjoy. Yay! for tic-tac-toe.'
-
-# puts WELCOME_MSG
+# rubocop:disable Layout/LineLength
+WELCOME_MSG = 'Let\'s play TIC-TAC-TOE! Here is more text! We will continue a game!'
+# rubocop:enable Layout/LineLength
 
 class Embox
   def initialize(message, max_width = nil, char_str = nil)
@@ -47,13 +47,12 @@ class Embox
   end
 
   def vertical_border
-    "|#{' ' * (max_width + @buffer * 2)}|\n"
+    space_width = (@buffer * 2) + max_width
+    "|#{' ' * space_width}|\n"
   end
 
   def message_border(message_line)
-    if message_line.length < max_width
-      message_line += ' ' * (max_width - message_line.length)
-    end
+    message_line += ' ' * (max_width - message_line.length) if message_line.length < max_width
     "|#{' ' * @buffer}#{message_line}#{' ' * @buffer}|\n"
   end
 
@@ -75,13 +74,10 @@ class Embox
         line = "#{word} "
       end
     end
+    @lines.push(line) unless line.empty?
   end
 
   def print_box_message
     puts message
   end
 end
-
-box = Embox.new(WELCOME_MSG)
-box.print_box_message
-
