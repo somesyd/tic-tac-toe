@@ -1,6 +1,6 @@
 # frozen_string_literal:true
 
-require_relative 'welcome'
+require_relative 'display'
 
 class Game
   def initialize
@@ -12,10 +12,10 @@ class Game
   end
 
   def display_welcome_message
-    message = Embox.new(@welcome_message)
-    message.print_box_message
+    box = Embox.new(@welcome_message)
+    puts box.message
   end
 end
 
 game = Game.new
-game.play
+game.display_welcome_message
