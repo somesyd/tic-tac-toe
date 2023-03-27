@@ -1,10 +1,11 @@
 # frozen_string_literal:true
 
+require_relative 'text'
 require_relative 'display'
 
 class Game
-  def initialize
-    @welcome_message = "Welcome! Let's play a game of TIC-TAC-TOE!"
+  def initialize(output)
+    @output = output
   end
 
   def play
@@ -12,10 +13,9 @@ class Game
   end
 
   def display_welcome_message
-    box = Embox.new(@welcome_message)
-    puts box.message
+    @output.text(WELCOME_MESSAGE)
   end
 end
 
-game = Game.new
+game = Game.new(Display.new)
 game.display_welcome_message

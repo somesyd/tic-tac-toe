@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+class Display
+  def text(content)
+    message = Embox.new(content).message
+    puts message
+  end
+end
+
 class Embox
   def initialize(message, max_width = nil, char_str = nil)
     @message = message.dup
