@@ -2,8 +2,7 @@
 
 class Display
   def text(content)
-    message = Embox.new(content).message
-    puts message
+    puts Embox.new(content).message
   end
 end
 
@@ -20,6 +19,8 @@ class Embox
   def message
     @message || ''
   end
+
+  private
 
   def max_width
     @max_width || 25

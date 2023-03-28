@@ -1,7 +1,7 @@
 # frozen_string_literal:true
 
-require_relative 'text'
-require_relative 'display'
+require './lib/text'
+require './lib/display'
 
 class Game
   def initialize(output)
@@ -16,6 +16,3 @@ class Game
     @output.text(WELCOME_MESSAGE)
   end
 end
-
-game = Game.new(Display.new)
-game.display_welcome_message
