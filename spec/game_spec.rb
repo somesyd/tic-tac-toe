@@ -5,17 +5,17 @@ require 'text'
 require 'board'
 
 RSpec.describe 'Game#play' do
-  let(:output) { instance_double('Display', text: nil, board: nil) }
+  let(:output) { instance_double('Display', pretty_print_text: nil, pretty_print_board: nil) }
   let(:game) { Game.new(output, Board.new) }
 
   it 'displays a welcome message' do
-    expect(output).to receive(:text).with(WELCOME_MESSAGE)
+    expect(output).to receive(:pretty_print_text).with(WELCOME_MESSAGE)
     game.play
   end
 
   it 'displays a blank board' do
     arr = '123456789'.chars
-    expect(output).to receive(:board).with(arr)
+    expect(output).to receive(:pretty_print_board).with(arr)
     game.play
   end
 end

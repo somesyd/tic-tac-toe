@@ -8,8 +8,4 @@ class Board
     @vertical_char = '¦'
     @horizontal_char = '-'
   end
-
-  def pretty_print
-    @current_board
-  end
 end

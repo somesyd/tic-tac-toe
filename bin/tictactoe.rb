@@ -6,5 +6,6 @@ require './lib/game'
 require './lib/display'
 require './lib/board'
 
-game = Game.new(Display.new, Board.new)
+display = Display.new(PrettyPrint.new, StringifyBoard.new)
+game = Game.new(display, Board.new)
 game.play

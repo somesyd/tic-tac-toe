@@ -16,10 +16,10 @@ class Game
   end
 
   def display_welcome_message
-    @output.text(WELCOME_MESSAGE)
+    @output.pretty_print_text(WELCOME_MESSAGE)
   end
 
   def display_board
-    @output.board(@board.pretty_print)
+    @output.pretty_print_board(@board.current_board)
   end
 end
