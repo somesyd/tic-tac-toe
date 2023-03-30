@@ -2,26 +2,19 @@
 
 require 'game'
 require 'text'
+require 'board'
 
 RSpec.describe 'Game#play' do
+  let(:output) { instance_double('Display', text: nil, board: nil) }
+  let(:game) { Game.new(output, Board.new) }
+
   it 'displays a welcome message' do
-    output = instance_double('display')
-    allow(output).to receive(:text)
-    game = Game.new(output)
-
+    expect(output).to receive(:text).with(WELCOME_MESSAGE)
     game.play
-
-    expect(output).to have_received(:text).with(WELCOME_MESSAGE)
   end
 
   it 'displays a blank board' do
-    output = instance_double('display')
-    allow(output).to receive(:text)
-    allow(output).to receive(:display_board)
-    game = Game.new(output)
-
+    expect(output).to receive(:board).with(Array.new(9, ''))
     game.play
-
-    expect(output).to have_received(:display_board).with(Array.new(10, ''))
   end
 end

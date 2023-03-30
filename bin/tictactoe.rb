@@ -4,6 +4,7 @@
 
 require './lib/game'
 require './lib/display'
+require './lib/board'
 
-game = Game.new(Display.new)
-game.display_welcome_message
+game = Game.new(Display.new, Board.new)
+game.play

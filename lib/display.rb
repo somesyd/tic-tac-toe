@@ -4,6 +4,10 @@ class Display
   def text(content)
     puts Embox.new(content).message
   end
+
+  def board(board)
+    puts 'I have a board!'
+  end
 end
 
 class Embox
