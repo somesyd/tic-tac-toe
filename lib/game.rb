@@ -20,6 +20,6 @@ class Game
   end
 
   def display_board
-    @output.board(@board.current_board)
+    @output.board(@board.pretty_print)
   end
 end

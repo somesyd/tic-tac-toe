@@ -14,7 +14,8 @@ RSpec.describe 'Game#play' do
   end
 
   it 'displays a blank board' do
-    expect(output).to receive(:board).with(Array.new(9, ''))
+    arr = '123456789'.chars
+    expect(output).to receive(:board).with(arr)
     game.play
   end
 end
