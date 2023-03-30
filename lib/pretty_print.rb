@@ -95,5 +95,4 @@ class PrettyPrint
     line = line.strip
     @lines.push(line) unless line.empty?
   end
-
 end

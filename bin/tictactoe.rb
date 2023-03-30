@@ -2,10 +2,9 @@
 
 # frozen_string_literal:true
 
-require './lib/game'
 require './lib/display'
 require './lib/board'
+require './lib/game'
 
-display = Display.new(PrettyPrint.new, StringifyBoard.new)
-game = Game.new(display, Board.new)
+game = Game.new(Display.new, Board.new)
 game.play
