@@ -1,15 +1,21 @@
 # frozen_string_literal:true
 
 class StringifyBoard
-  attr_reader :board_string
+  attr_accessor :vertical_char, :horizontal_char, :match_width
 
-  def initialize(board, vertical_char = '¦', horizontal_char = '-')
-    @board = board.dup
+  def initialize(vertical_char = '¦', horizontal_char = '-')
+    @board = [] 
     @vertical_char = vertical_char
     @horizontal_char = horizontal_char
     @vertical_padding = 5
     @board_string = ''
+    @match_width = nil
+  end
+
+  def format_board(board)
+    @board = board.dup
     build_board_string
+    @board_string
   end
 
   def build_board_string
