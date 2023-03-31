@@ -8,7 +8,6 @@ class Game
   def initialize(output, board)
     @output = output
     @board = board
-    output
   end
 
   def play
