@@ -5,7 +5,7 @@ require 'text'
 require 'board'
 
 RSpec.describe 'Game#play' do
-  let(:output) { instance_double('Display', pretty_print_text: nil, pretty_print_board: nil) }
+  let(:output) { double('Display', pretty_print_text: nil, pretty_print_board: nil) }
   let(:game) { Game.new(output, Board.new) }
 
   it 'displays a welcome message' do
@@ -14,7 +14,7 @@ RSpec.describe 'Game#play' do
   end
 
   it 'displays a blank board' do
-    arr = '123456789'.chars
+    arr = %w[1 2 3 4 5 6 7 8 9]
     expect(output).to receive(:pretty_print_board).with(arr)
     game.play
   end

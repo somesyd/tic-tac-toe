@@ -5,7 +5,5 @@ class Board
 
   def initialize
     @current_board = '123456789'.chars
-    @vertical_char = '¦'
-    @horizontal_char = '-'
   end
 end

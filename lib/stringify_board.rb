@@ -8,31 +8,31 @@ class StringifyBoard
     @vertical_char = vertical_char
     @horizontal_char = horizontal_char
     @vertical_padding = 5
-    @board_string = ''
   end
 
   def format_board(board, match_width)
     @board = board.dup
     build_board_string(match_width)
-    @board_string
   end
+
+  private
 
   def build_board_string(center_on_width = nil)
-    @board_string = build_player_row(0)
-    @board_string += horizontal_line
-    @board_string += build_player_row(1)
-    @board_string += horizontal_line
-    @board_string += build_player_row(2)
-    pad_board_string(center_on_width) if center_on_width
+    board_string = build_player_row(0)
+    board_string += horizontal_line
+    board_string += build_player_row(1)
+    board_string += horizontal_line
+    board_string += build_player_row(2)
+    pad_board_string(board_string, center_on_width) if center_on_width
   end
 
-  def pad_board_string(center_on_width)
+  def pad_board_string(board_string, center_on_width)
     left_padding = (center_on_width - board_width) / 2
-    lines = @board_string.split("\n")
+    lines = board_string.split("\n")
     lines.each_with_index do |line, index|
       lines[index] = "#{' ' * left_padding}#{line}"
     end
-    @board_string = lines.join("\n")
+    lines.join("\n")
   end
 
   def build_player_row(row_num)
