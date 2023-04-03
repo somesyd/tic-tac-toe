@@ -9,11 +9,7 @@ name: Ruby
 
 on:
   pull_request:
-    types:
-      - opened
   push:
-    branches:
-      - main
 
 permissions:
   contents: read

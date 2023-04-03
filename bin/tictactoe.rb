@@ -2,8 +2,14 @@
 
 # frozen_string_literal:true
 
-require './lib/game'
 require './lib/display'
+require './lib/board'
+require './lib/game'
+require './lib/pretty_print'
+require './lib/stringify_board'
 
-game = Game.new(Display.new)
-game.display_welcome_message
+text_formatter = PrettyPrint.new
+board_formatter = StringifyBoard.new
+display = Display.new(text_formatter, board_formatter)
+game = Game.new(display, Board.new)
+game.play
