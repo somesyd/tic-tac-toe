@@ -18,6 +18,8 @@ class Game
     current_player = select_next_player(nil)
     display_request_next_move(current_player)
     move = request_next_move(current_player)
+    @board.add_move(move, 'X')
+    display_board
   end
 
   def display_board

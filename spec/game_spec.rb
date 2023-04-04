@@ -42,8 +42,11 @@ RSpec.describe 'Game#play' do
 
   it 'updates the board when player moves' do
     arr = %w[X 2 3 4 5 6 7 8 9]
+    allow(board).to receive(:current_board).and_return(board_array, arr)
 
-    expect(board).to receive(:add_move).with('1')
+    expect(output).to receive(:pretty_print_board).with(board_array)
+    expect(board).to receive(:add_move).with(1, 'X')
+    expect(output).to receive(:pretty_print_board).with(arr)
 
     game.play
   end
