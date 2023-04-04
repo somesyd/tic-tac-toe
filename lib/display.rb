@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require './lib/pretty_print'
-
 class Display
   def initialize(outlet, text_formatter, board_formatter)
     @outlet = outlet
@@ -13,10 +11,18 @@ class Display
   def pretty_print_text(content)
     text = @text_formatter.format_text(content)
     @last_width = text.split("\n").max_by(&:length).length
-    @outlet.display(text)
+    @outlet.send(text)
   end
 
   def pretty_print_board(board)
-    @outlet.display(@board_formatter.format_board(board, @last_width))
+    @outlet.send(@board_formatter.format_board(board, @last_width))
+  end
+
+  def print_text(content)
+    @outlet.send(content)
+  end
+
+  def print_prompt(content)
+    @outlet.send_without_newline(content)
   end
 end
