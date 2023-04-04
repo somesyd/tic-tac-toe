@@ -10,4 +10,8 @@ class Board
   def add_move(index, token)
     @current_board[index - 1] = token
   end
+
+  def legal_move?(index)
+    /^[1-9]$/.match?(@current_board[index - 1])
+  end
 end

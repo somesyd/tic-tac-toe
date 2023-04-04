@@ -14,12 +14,8 @@ class Game
 
   def play
     display_welcome_message
-    display_board
-    current_player = select_next_player(nil)
-    display_request_next_move(current_player)
-    move = request_next_move(current_player)
-    @board.add_move(move, 'X')
-    display_board
+    run_turn
+    run_turn
   end
 
   def display_board
@@ -28,6 +24,14 @@ class Game
 
   private
 
+  def run_turn
+    display_board
+    current_player = select_next_player(nil)
+    display_request_next_move(current_player)
+    move = request_next_move(current_player)
+    @board.add_move(move, current_player.token)
+  end
+
   def display_request_next_move(player)
     @output.print_prompt("#{player.name}, #{REQUEST_MOVE_MESSAGE}")
   end
@@ -35,7 +39,7 @@ class Game
   def request_next_move(player)
     valid = false
     until valid
-      move = player.request_move
+      move = player.make_move
       valid = true if player_input_valid?(move)
     end
     move.to_i

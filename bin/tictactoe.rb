@@ -11,8 +11,8 @@ require './lib/player'
 require './lib/pretty_print'
 require './lib/stringify_board'
 
-player1 = Player.new(CliInput.new, 'Player 1')
-player2 = Player.new(CliInput.new, 'Player 2')
+player1 = Player.new(CliInput.new, 'Player 1', 'X')
+player2 = Player.new(CliInput.new, 'Player 2', 'O')
 players = [player1, player2]
 
 output = CliPrinter.new
