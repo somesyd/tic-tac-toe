@@ -4,10 +4,12 @@ require 'game'
 require 'text'
 
 RSpec.describe Game do
+  # instance variables
   let(:output) { double('Display', pretty_print_text: nil) }
   let(:board) { double('Board', win?: true) }
   let(:turn) { double('Turn', run: nil) }
 
+  # players array instance variable
   let(:player1) { double('Player') }
   let(:player2) { double('Player') }
   let(:players) { [player1, player2] }

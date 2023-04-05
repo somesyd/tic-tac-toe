@@ -27,7 +27,7 @@ class Turn
     valid = false
     until valid
       move = player.make_move
-      valid = true if validate_player_input (move)
+      valid = true if validate_player_input(move)
     end
     move.to_i
   end

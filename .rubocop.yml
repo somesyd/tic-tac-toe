@@ -4,8 +4,15 @@ AllCops:
     - 'vendor/**/*'
     - spec/spec_helper.rb
     - Gemfile
+
 Style/Documentation:
   Enabled: false
+
 Metrics/MethodLength:
   Enabled: false
 
+Metrics/BlockLength:
+  ExcludedMethods:
+    - describe
+    - context
+    - it

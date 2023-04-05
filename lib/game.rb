@@ -1,5 +1,4 @@
-# fro   zen_string_litera
-# :true
+# frozen_string_literal: true
 
 require './lib/text'
 require './lib/display'
