@@ -22,7 +22,15 @@ RSpec.describe Board do
     it 'returns true if move is valid' do
       subject.add_move(3, 'X')
       subject.add_move(6, 'O')
+
       expect(subject.legal_move?(4)).to eq(true)
+    end
+
+    it 'returns false if index is already occupied' do
+      subject.add_move(3, 'X')
+      subject.add_move(6, 'O')
+
+      expect(subject.legal_move?(3)).to eq(false)
     end
   end
 end
