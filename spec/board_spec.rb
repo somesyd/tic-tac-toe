@@ -17,20 +17,4 @@ RSpec.describe Board do
       expect(subject.current_board).to eq(arr)
     end
   end
-
-  describe '#legal_move?' do
-    it 'returns true if move is valid' do
-      subject.add_move(3, 'X')
-      subject.add_move(6, 'O')
-
-      expect(subject.legal_move?(4)).to eq(true)
-    end
-
-    it 'returns false if index is already occupied' do
-      subject.add_move(3, 'X')
-      subject.add_move(6, 'O')
-
-      expect(subject.legal_move?(3)).to eq(false)
-    end
-  end
 end

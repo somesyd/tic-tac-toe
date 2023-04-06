@@ -11,10 +11,6 @@ class Board
     @current_board[index - 1] = token
   end
 
-  def legal_move?(index)
-    /^[1-9]$/.match?(@current_board[index - 1])
-  end
-
   def win?
     # placeholder to stop after 3 moves
     @current_board.count('X') + @current_board.count('O') > 2

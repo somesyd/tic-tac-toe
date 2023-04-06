@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Turn
-  def initialize(output, board)
+  def initialize(output, board, validator)
     @output = output
     @board = board
+    @validator = validator
   end
 
   def run(player)
@@ -33,14 +34,8 @@ class Turn
   end
 
   def validate_player_input(input)
-    return @output.print_prompt(BAD_INPUT_MESSAGE) unless number_in_range?(input)
-
-    return @output.print_prompt(ILLEGAL_MOVE_MESSAGE) unless @board.legal_move?(input.to_i)
-
-    true
-  end
-
-  def number_in_range?(input)
-    /^[1-9]$/.match?(input)
+    error_report = @validator.check(input, @board.current_board)
+    @output.print_prompt(error_report.error_message) unless error_report.valid
+    error_report.valid
   end
 end

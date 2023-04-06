@@ -9,6 +9,7 @@ require './lib/board'
 require './lib/game'
 require './lib/player'
 require './lib/turn'
+require './lib/validate'
 require './lib/pretty_print'
 require './lib/stringify_board'
 
@@ -22,6 +23,7 @@ board_formatter = StringifyBoard.new
 display = Display.new(output, text_formatter, board_formatter)
 
 board = Board.new
-turn = Turn.new(display, board)
+validate = Validate.new
+turn = Turn.new(display, board, validate)
 game = Game.new(display, board, turn, players)
 game.play

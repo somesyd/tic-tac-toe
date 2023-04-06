@@ -7,12 +7,14 @@ RSpec.describe Turn do
   # default variables
   let(:board_array) { %w[1 2 3 4 5 6 7 8 9] }
   let(:player) { double('Player', name: 'P1', token: 'X', make_move: '1') }
+  let(:report) { double('ErrorReport', valid: true, error_message: 'some text') }
 
   # instance variables
   let(:output) { double('Display', pretty_print_board: nil, print_prompt: nil) }
   let(:board) { double('Board', add_move: nil, legal_move?: true, current_board: board_array) }
+  let(:validate) { double('Validate', check: report) }
 
-  let(:turn) { Turn.new(output, board) }
+  let(:turn) { Turn.new(output, board, validate) }
 
   it 'displays the board' do
     expect(output).to receive(:pretty_print_board).with(board_array)
@@ -34,20 +36,8 @@ RSpec.describe Turn do
     turn.run(player)
   end
 
-  describe 'error handling' do
-    it 'sends error message to player if move is out of range' do
-      allow(player).to receive(:make_move).and_return('10', '4')
-
-      expect(output).to receive(:print_prompt).with(BAD_INPUT_MESSAGE)
-      turn.run(player)
-    end
-
-    it 'sends error message to player if chosen space is occupied' do
-      allow(board).to receive(:legal_move?).and_return(false, true)
-      allow(player).to receive(:make_move).and_return('3', '4')
-
-      expect(output).to receive(:print_prompt).with(ILLEGAL_MOVE_MESSAGE)
-      turn.run(player)
-    end
+  it 'checks that player input is valid' do
+    expect(validate).to receive(:check).with('1', board.current_board)
+    turn.run(player)
   end
 end
