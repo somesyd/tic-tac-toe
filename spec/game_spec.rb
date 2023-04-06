@@ -2,20 +2,41 @@
 
 require 'game'
 require 'text'
-require 'board'
 
-RSpec.describe 'Game#play' do
-  let(:output) { double('Display', pretty_print_text: nil, pretty_print_board: nil) }
-  let(:game) { Game.new(output, Board.new) }
+RSpec.describe Game do
+  # instance variables
+  let(:output) { double('Display', pretty_print_text: nil) }
+  let(:board) { double('Board', win?: true) }
+  let(:turn) { double('Turn', run: nil) }
+
+  # players array instance variable
+  let(:player1) { double('Player') }
+  let(:player2) { double('Player') }
+  let(:players) { [player1, player2] }
+
+  let(:game) { Game.new(output, board, turn, players) }
 
   it 'displays a welcome message' do
     expect(output).to receive(:pretty_print_text).with(WELCOME_MESSAGE)
     game.play
   end
 
-  it 'displays a blank board' do
-    arr = %w[1 2 3 4 5 6 7 8 9]
-    expect(output).to receive(:pretty_print_board).with(arr)
+  it 'selects player2 if player1 has finished turn' do
+    allow(board).to receive(:win?).and_return(false, false, true)
+
+    expect(turn).to receive(:run).with(player1).ordered
+    expect(turn).to receive(:run).with(player2).ordered
+
+    game.play
+  end
+
+  it 'selects player1 if player2 has finished turn' do
+    allow(board).to receive(:win?).and_return(false, false, false, true)
+
+    expect(turn).to receive(:run).with(player1).ordered
+    expect(turn).to receive(:run).with(player2).ordered
+    expect(turn).to receive(:run).with(player1).ordered
+
     game.play
   end
 end
