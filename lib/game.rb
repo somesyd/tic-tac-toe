@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'colorize'
 require './lib/text'
 require './lib/display'
 require './lib/board'
@@ -37,6 +38,7 @@ class Game
     if @board.win?
       winner = determine_winner
       @output.pretty_print_text("GAME OVER!!! #{winner.name} WINS!!!")
+      @output.pretty_print_board(@board.current_board, @board.winner_array, :green)
     else
       @output.pretty_print_text('GAME OVER!!! GAME is TIED!!!')
     end

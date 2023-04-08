@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+#
 
 class Display
   def initialize(outlet, text_formatter, board_formatter)
@@ -14,8 +15,8 @@ class Display
     @outlet.send(text)
   end
 
-  def pretty_print_board(board)
-    @outlet.send(@board_formatter.format_board(board, @last_width))
+  def pretty_print_board(board, colorize_array = [], color = nil)
+    @outlet.send(@board_formatter.format_board(board, @last_width, colorize_array, color))
   end
 
   def print_text(content)

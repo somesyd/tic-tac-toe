@@ -1,11 +1,12 @@
 # frozen_string_literal:true
 
 class Board
-  attr_accessor :current_board, :winner
+  attr_accessor :current_board, :winner, :winner_array
 
   def initialize
     @current_board = '123456789'.chars
     @winner = nil
+    @winner_array = []
   end
 
   def add_move(index, token)
@@ -33,7 +34,10 @@ class Board
   def row_win?
     3.times do |index|
       row = @current_board[(3 * index)..(3 * index) + 2]
-      return true if find_three_matching_tokens(row)
+      if find_three_matching_tokens(row)
+        @winner_array = ((3 * index)..(3 * index) + 2).to_a
+        return true
+      end
     end
     false
   end
@@ -44,7 +48,12 @@ class Board
       3.times do |row_index|
         column.push(@current_board[(3 * row_index) + col_index])
       end
-      return true if find_three_matching_tokens(column)
+      if find_three_matching_tokens(column)
+        3.times do |r|
+          @winner_array.push((3 * r) + col_index)
+        end
+        return true
+      end
     end
     false
   end
@@ -56,7 +65,12 @@ class Board
       indices.each do |index|
         diagonal.push(@current_board[index - 1])
       end
-      return true if find_three_matching_tokens(diagonal)
+      if find_three_matching_tokens(diagonal)
+        indices.each do |i|
+          @winner_array.push(i - 1)
+        end
+        return true
+      end
     end
     false
   end
