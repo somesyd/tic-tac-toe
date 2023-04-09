@@ -15,8 +15,8 @@ class Display
     @outlet.send(text)
   end
 
-  def pretty_print_board(board, colorize_array = [], color = nil)
-    @outlet.send(@board_formatter.format_board(board, @last_width, colorize_array, color))
+  def pretty_print_board(board, color_by_index = nil)
+    @outlet.send(@board_formatter.format_board(board, @last_width, color_by_index))
   end
 
   def print_text(content)

@@ -21,7 +21,8 @@ class Turn
   end
 
   def display_request_next_move(player)
-    @output.print_prompt("#{player.name}, #{REQUEST_MOVE_MESSAGE}")
+    message = request_move_message(player.name)
+    @output.print_prompt(message)
   end
 
   def request_next_move(player)

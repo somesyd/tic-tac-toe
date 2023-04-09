@@ -4,6 +4,7 @@ require 'colorize'
 require './lib/text'
 require './lib/display'
 require './lib/board'
+require './lib/color_by_index'
 
 class Game
   def initialize(output, board, turn, players)
@@ -37,10 +38,12 @@ class Game
   def display_game_end_message
     if @board.win?
       winner = determine_winner
-      @output.pretty_print_text("GAME OVER!!! #{winner.name} WINS!!!")
-      @output.pretty_print_board(@board.current_board, @board.winner_array, :green)
+      color_by_index = ColorByIndex.new(@board.winner_array, :green)
+      @output.pretty_print_text(game_over_winner(winner.name))
+      @output.pretty_print_board(@board.current_board, color_by_index)
     else
-      @output.pretty_print_text('GAME OVER!!! GAME is TIED!!!')
+      @output.pretty_print_text(GAME_OVER_TIED)
+      @output.pretty_print_board(@board.current_board)
     end
   end
 
