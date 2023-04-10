@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Turn
+  include Text
   def initialize(output, board, validator)
     @output = output
     @board = board

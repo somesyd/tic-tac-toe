@@ -1,7 +1,6 @@
 # frozen_string_literal:true
 
 require 'game'
-require 'text'
 
 RSpec.describe Game do
   let(:current_board) { %w[1 2 3 4 5 6 7 8 9] }
@@ -19,7 +18,7 @@ RSpec.describe Game do
   let(:game) { Game.new(output, board, turn, players) }
 
   it 'displays a welcome message' do
-    expect(output).to receive(:pretty_print_text).with(WELCOME_MESSAGE)
+    expect(output).to receive(:pretty_print_text).with(Text::WELCOME_MESSAGE)
     game.play
   end
 
@@ -58,7 +57,7 @@ RSpec.describe Game do
   end
 
   it 'displays a message at end of game with tie' do
-    expect(output).to receive(:pretty_print_text)
+    expect(output).to receive(:pretty_print_text).with(Text::GAME_OVER_TIED)
     expect(output).to receive(:pretty_print_board)
 
     game.play

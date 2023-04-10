@@ -7,6 +7,8 @@ require './lib/board'
 require './lib/color_by_index'
 
 class Game
+  include Text
+
   def initialize(output, board, turn, players)
     @output = output
     @board = board
