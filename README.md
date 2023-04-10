@@ -1,11 +1,11 @@
-## Tic-Tac-Toe Game
+## Tic-Tac-Toe :x::o:
 
 A simple CLI game of Tic-Tac-Toe for 2 players built with Ruby and tested with RSpec.
 
-### Required
+### Prerequisites
 
-rbenv
-Ruby version 3.2.1
+- rbenv
+- built using Ruby version 3.2.1
 
 ### Installation
 
@@ -26,5 +26,7 @@ bundle install
 ruby bin/tictactoe.rb
 ```
 
-### Screenshot
+### Play
+The game alternates between players until there is a win or tie. Each player chooses a space on the board indexed by number.
 
+![ttt_welcome](https://user-images.githubusercontent.com/25858061/230994198-7245740d-cce1-4ff1-b3e0-ccc7789c26f2.jpg)
