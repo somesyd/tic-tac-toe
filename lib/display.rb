@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-#
 
 class Display
   def initialize(outlet, text_formatter, board_formatter)

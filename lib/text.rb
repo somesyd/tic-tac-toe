@@ -1,7 +1,6 @@
 # frozen_string_literal:true
 
 module Text
-
   WELCOME_MESSAGE = 'Welcome! Let\'s play a game of TIC-TAC-TOE!'
 
   BAD_INPUT_MESSAGE = 'Bad input: Please enter a valid number between 1 and 9: '

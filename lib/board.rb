@@ -48,29 +48,29 @@ class Board
       3.times do |row_index|
         column.push(@current_board[(3 * row_index) + col_index])
       end
-      if find_three_matching_tokens(column)
-        3.times do |r|
-          @winner_array.push((3 * r) + col_index)
-        end
-        return true
+      next unless find_three_matching_tokens(column)
+
+      3.times do |r|
+        @winner_array.push((3 * r) + col_index)
       end
+      return true
     end
     false
   end
 
   def diagonal_win?
     diagonals = [[1, 5, 9], [3, 5, 7]]
-    diagonals.each do |indices|
-      diagonal = []
-      indices.each do |index|
-        diagonal.push(@current_board[index - 1])
+    diagonals.each do |diagonal|
+      diagonal_tokens = []
+      diagonal.each do |index|
+        diagonal_tokens.push(@current_board[index - 1])
       end
-      if find_three_matching_tokens(diagonal)
-        indices.each do |i|
-          @winner_array.push(i - 1)
-        end
-        return true
+      next unless find_three_matching_tokens(diagonal_tokens)
+
+      diagonal.each do |index|
+        @winner_array.push(index - 1)
       end
+      return true
     end
     false
   end
