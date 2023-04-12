@@ -5,6 +5,8 @@ require './lib/text'
 ErrorReport = Struct.new(:valid, :error_message)
 
 class Validate
+  include Text
+
   def check(input, board_array)
     return ErrorReport.new(false, BAD_INPUT_MESSAGE) unless number_in_range?(input)
 

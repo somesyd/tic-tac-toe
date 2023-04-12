@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 class CliPrinter
   def send(content)
     puts content

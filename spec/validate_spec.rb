@@ -23,6 +23,7 @@ RSpec.describe 'Validate#check' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be true
+    expect(error_report.error_message).to be_nil
   end
 
   it 'returns ErrorReport with false if input is not an integer' do
@@ -30,6 +31,7 @@ RSpec.describe 'Validate#check' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::BAD_INPUT_MESSAGE)
   end
 
   it 'returns ErrorReport with false if board index is already occupied' do
@@ -38,6 +40,7 @@ RSpec.describe 'Validate#check' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::ILLEGAL_MOVE_MESSAGE)
   end
 end
 
@@ -50,6 +53,7 @@ RSpec.describe 'Validate#check with board edges' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::BAD_INPUT_MESSAGE)
   end
 
   it 'returns ErrorReport with false if input is 0' do
@@ -57,6 +61,7 @@ RSpec.describe 'Validate#check with board edges' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::BAD_INPUT_MESSAGE)
   end
 
   it 'returns ErrorReport with false if input is 10' do
@@ -64,6 +69,7 @@ RSpec.describe 'Validate#check with board edges' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::BAD_INPUT_MESSAGE)
   end
 
   it 'returns ErrorReport with false if input is empty string' do
@@ -71,6 +77,7 @@ RSpec.describe 'Validate#check with board edges' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::BAD_INPUT_MESSAGE)
   end
 
   it 'returns ErrorReport with false if input is negative' do
@@ -78,5 +85,6 @@ RSpec.describe 'Validate#check with board edges' do
 
     error_report = validate.check(input, board_array)
     expect(error_report.valid).to be false
+    expect(error_report.error_message).to be(Text::BAD_INPUT_MESSAGE)
   end
 end

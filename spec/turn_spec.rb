@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'turn'
-require 'text'
 
 RSpec.describe Turn do
   # default variables

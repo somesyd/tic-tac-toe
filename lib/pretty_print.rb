@@ -12,8 +12,9 @@ class PrettyPrint
     @pretty_message = ''
   end
 
-  def format_text(message)
-    @message = message.dup
+  def format_text(content)
+    clear_text_buffers
+    @message = content.dup
     build_box
     @pretty_message
   end
@@ -27,6 +28,11 @@ class PrettyPrint
   end
 
   private
+
+  def clear_text_buffers
+    @pretty_message = ''
+    @lines = []
+  end
 
   def length_of_longest_line
     @lines.max_by(&:length).length

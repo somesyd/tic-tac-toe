@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Turn
+  include Text
   def initialize(output, board, validator)
     @output = output
     @board = board
@@ -21,7 +22,8 @@ class Turn
   end
 
   def display_request_next_move(player)
-    @output.print_prompt("#{player.name}, #{REQUEST_MOVE_MESSAGE}")
+    message = request_move_message(player.name)
+    @output.print_prompt(message)
   end
 
   def request_next_move(player)
