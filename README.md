@@ -4,8 +4,8 @@ A simple CLI game of Tic-Tac-Toe for 2 players built with Ruby and tested with R
 
 ### Prerequisites
 
-- rbenv
-- built using Ruby version 3.2.1
+Ruby version 3.2.1
+Bundler version 2.4.10
 
 ### Installation
 
@@ -16,14 +16,14 @@ git clone https://github.com/somesyd/tic-tac-toe.git
 # go into game directory
 cd tic-tac-toe
 
-# load rbenv into your shell
-rbenv init
-
 # install dependencies
 bundle install
 
 # start the game
 ruby bin/tictactoe.rb
+
+# run all tests
+rspec
 ```
 
 ### Play

@@ -1,7 +1,11 @@
-# frozen_string_literal:true
+# frozen_string_literal: true
+
+require './lib/winning_sequences'
 
 class Board
-  attr_accessor :current_board, :winner, :winner_array
+  include WinningSequences
+
+  attr_reader :current_board, :winner, :winner_array
 
   def initialize
     @current_board = '123456789'.chars
@@ -17,68 +21,34 @@ class Board
     win? || board_full?
   end
 
+  def win?
+    SEQUENCES.each do |sequence|
+      sequence_tokens = map_position_to_board_token(sequence)
+      next unless find_three_matching_tokens(sequence_tokens)
+
+      @winner_array = map_position_to_index(sequence)
+      return true
+    end
+    false
+  end
+
+  private
+
+  def map_position_to_board_token(sequence_array)
+    sequence_array.map { |position| @current_board[position - 1] }
+  end
+
+  def map_position_to_index(array)
+    array.map { |position| position - 1 }
+  end
+
   def board_full?
     @current_board.select { |space| space[/^[1-9]$/] }.empty?
   end
 
-  def win?
-    return row_win? if row_win?
-
-    return column_win? if column_win?
-
-    return diagonal_win? if diagonal_win?
-
-    false
-  end
-
-  def row_win?
-    3.times do |index|
-      row = @current_board[(3 * index)..(3 * index) + 2]
-      if find_three_matching_tokens(row)
-        @winner_array = ((3 * index)..(3 * index) + 2).to_a
-        return true
-      end
-    end
-    false
-  end
-
-  def column_win?
-    3.times do |col_index|
-      column = []
-      3.times do |row_index|
-        column.push(@current_board[(3 * row_index) + col_index])
-      end
-      next unless find_three_matching_tokens(column)
-
-      3.times do |r|
-        @winner_array.push((3 * r) + col_index)
-      end
-      return true
-    end
-    false
-  end
-
-  def diagonal_win?
-    diagonals = [[1, 5, 9], [3, 5, 7]]
-    diagonals.each do |diagonal|
-      diagonal_tokens = []
-      diagonal.each do |index|
-        diagonal_tokens.push(@current_board[index - 1])
-      end
-      next unless find_three_matching_tokens(diagonal_tokens)
-
-      diagonal.each do |index|
-        @winner_array.push(index - 1)
-      end
-      return true
-    end
-    false
-  end
-
   def find_three_matching_tokens(token_array)
     token = token_array[0]
-    matches = token_array.select { |val| val == token }
-    if matches.count == 3
+    if token_array.uniq.count == 1
       @winner = token
       return true
     end

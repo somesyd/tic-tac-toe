@@ -1,4 +1,4 @@
-# frozen_string_literal:true
+# frozen_string_literal: true
 
 require 'board'
 
@@ -73,20 +73,6 @@ RSpec.describe Board do
 
       expect(subject.win?).to be true
       expect(subject.winner).to eq('O')
-    end
-  end
-
-  describe '#board_full?' do
-    it 'returns true if game board is full' do
-      add_moves([[1, 'X'], [5, 'O'], [4, 'X'], [7, 'O'], [3, 'X'], [9, 'O'], [8, 'X'], [2, 'O'], [6, 'O']])
-
-      expect(subject.board_full?).to be true
-    end
-
-    it 'returns false if game board is not full' do
-      add_moves([[1, 'X'], [5, 'O'], [4, 'X'], [7, 'O'], [3, 'X'], [9, 'O'], [8, 'X'], [2, 'O']])
-
-      expect(subject.board_full?).to be false
     end
   end
 

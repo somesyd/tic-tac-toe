@@ -12,7 +12,5 @@ Metrics/MethodLength:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods:
-    - describe
-    - context
-    - it
+  Exclude:
+    - 'spec/*.rb' 
